@@ -1,0 +1,29 @@
+#!/bin/python
+
+import cgi
+request = cgi.FieldStorage()
+
+import surveys
+
+print("Content-type:text/html\n\n")
+
+print("<form action='submit' method='post'>")
+
+survey = surveys.parse_survey(request.getvalue("s"))
+
+for item in survey:
+    print("<br>%s<br>" % item[2]) #print item title
+
+    if item[1] == "radio" or item[1] == "checkbox":
+        #TODO: add checkbox support
+        i = 0
+        for choice in item:
+            if i > 2:
+                print("<input type='%s' name='%s' value='%s'>%s<br>" % (item[1], item[0], choice[0], choice[1]))
+            i += 1
+    else:
+        print("<input type='%s' name='%s'> <br>" % (item[1], item[0]))
+    
+print("<br><input type='submit' value='Submit Survey'>")
+
+print("</form>")
