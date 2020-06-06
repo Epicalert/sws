@@ -1,0 +1,56 @@
+#!/bin/python
+
+import MySQLdb
+import os
+import cgi
+
+import surveys
+
+request = cgi.FieldStorage()
+
+survey = surveys.parse_survey(request.getvalue("_surveyname"))
+
+db = MySQLdb.connect("localhost","daevsan","peepeepoopoo","sws")
+c = db.cursor()
+
+sql_query = "INSERT INTO `%s` ("
+sql_query_fields = ()
+sql_query_values = ()
+count_fields = 0
+
+
+print("Content-type: text/plain\n\n")
+
+#get survey items (column names) from survey data
+for item in survey:
+    if item[0][0] != "_" and item[0] in request.keys():
+        sql_query_fields += (item[0],)
+
+#get response values from cgi request
+for column in sql_query_fields:
+    if column[0] != "_":
+        sql_query_values += (request.getvalue(column),)
+
+        count_fields += 1
+
+#TODO: probably should make this a function or smth
+sql_query += "`%s`," * (count_fields - 1)
+sql_query += "`%s`)"
+
+#insert table and column names (obtained from file)
+sql_query = sql_query % ((request.getvalue("_surveyname"),) + sql_query_fields)
+
+sql_query += "VALUES ( "
+
+sql_query += "%s," * (count_fields - 1)
+sql_query += "%s);"
+
+combined =  sql_query_values
+print(sql_query)
+print(sql_query % combined)
+c.execute(sql_query, combined)
+
+c.execute("COMMIT")
+
+c.close()
+db.close()

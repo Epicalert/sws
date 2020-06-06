@@ -10,6 +10,7 @@ print("Content-type:text/html\n\n")
 print("<form action='submit' method='post'>")
 
 survey = surveys.parse_survey(request.getvalue("s"))
+print("<input type='hidden' name='_surveyname' value='%s'>" % request.getvalue("s"))
 
 for item in survey:
     print("<br>%s<br>" % item[2]) #print item title
