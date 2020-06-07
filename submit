@@ -19,7 +19,7 @@ sql_query_values = ()
 count_fields = 0
 
 
-print("Content-type: text/plain\n\n")
+print("Content-type: text/html\n\n")
 
 #get survey items (column names) from survey data
 for item in survey:
@@ -46,11 +46,16 @@ sql_query += "%s," * (count_fields - 1)
 sql_query += "%s);"
 
 combined =  sql_query_values
-print(sql_query)
-print(sql_query % combined)
-c.execute(sql_query, combined)
+
+try:
+    c.execute(sql_query, combined)
+except:
+    print(open("/usr/share/sws/submit-error.html").read())
 
 c.execute("COMMIT")
 
 c.close()
 db.close()
+
+#print success page
+print(open("/usr/share/sws/submit-success.html").read())

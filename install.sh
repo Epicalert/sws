@@ -14,5 +14,8 @@ sudo mkdir -p /etc/sws/surveys
 #make application data dir
 sudo mkdir -p /usr/share/sws
 
+#copy files to app data dir
+sudo cp submit-success.html submit-error.html /usr/share/sws
+
 #make survey sql database
 sudo mysql -e "CREATE DATABASE sws;"
