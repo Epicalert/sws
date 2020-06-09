@@ -6,8 +6,14 @@ request = cgi.FieldStorage()
 import surveys
 
 print("Content-type:text/html\n\n")
-
-print("<form action='submit' method='post'>")
+print("""<!DOCTYPE html>
+        <html>
+            <head>
+                <link rel='stylesheet' href='../sws.css'>
+            </head>
+            <body>
+                <form action='submit' method='post'>
+                <h1>Survey</h1>""")
 
 survey = surveys.parse_survey(request.getvalue("s"))
 print("<input type='hidden' name='_surveyname' value='%s'>" % request.getvalue("s"))
@@ -25,6 +31,8 @@ for item in survey:
     else:
         print("<input type='%s' name='%s'> <br>" % (item[1], item[0]))
     
-print("<br><input type='submit' value='Submit Survey'>")
-
-print("</form>")
+print("""
+    <br><input type='submit' value='Submit Survey'>
+    </form>
+    </body>
+    </html>""")

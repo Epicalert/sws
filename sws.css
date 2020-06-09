@@ -1,0 +1,25 @@
+@font-face {
+	font-family: "Archivo-Regular";
+	src: url("fonts/Archivo-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Archivo-Bold";
+	src: url("fonts/Archivo-Bold.ttf");
+}
+
+body {
+	background-color: #2b2b2b;
+	color: #eeeeee;
+
+	font-family: "Archivo-Regular";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Archivo-Bold";
+}

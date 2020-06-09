@@ -2,9 +2,14 @@
 
 [ ! -n "$1" ] && echo "You must specify an install directory." && exit
 
+#make install dir
+sudo mkdir -p $1
+sudo mkdir -p $1/cgi
+
 #copy cgi scripts to install dir
 #TODO: put surveys.py somewhere else
-sudo cp submit survey surveys.py $1
+sudo cp -r sws.css fonts/ $1
+sudo cp survey submit surveys.py $1/cgi
 
 #TODO: setup script for creating survey tables
 
