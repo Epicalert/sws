@@ -9,8 +9,9 @@ import surveys
 request = cgi.FieldStorage()
 
 survey = surveys.parse_survey(request.getvalue("_surveyname"))
+cred_sql = surveys.get_credentials_sql()
 
-db = MySQLdb.connect("localhost","daevsan","peepeepoopoo","sws")
+db = MySQLdb.connect("localhost",cred_sql[0],cred_sql[1],"sws")
 c = db.cursor()
 
 sql_query = "INSERT INTO `%s` ("

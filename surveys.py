@@ -33,3 +33,8 @@ def parse_survey(survey_name):
         survey += [current_item]
 
     return survey
+
+def get_credentials_sql():
+    credentials_file = open("/etc/sws/credentials_sql")
+
+    return credentials_file.read().split("\n")

@@ -8,7 +8,8 @@ if len(sys.argv) < 2:
     quit()
 
 survey = surveys.parse_survey(sys.argv[1])
-db = MySQLdb.connect("localhost","daevsan","peepeepoopoo","sws")
+cred_sql = surveys.get_credentials_sql()
+db = MySQLdb.connect("localhost",cred_sql[0],cred_sql[1],"sws")
 c = db.cursor()
 
 sql_query = "CREATE TABLE %s (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT" % sys.argv[1]
