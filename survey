@@ -34,5 +34,6 @@ for item in survey:
 print("""
     <br><input type='submit' value='Submit Survey'>
     </form>
+    <p class='footer'>Powered by sws. This software is free and open source; <a href='https://github.com/Epicalert/sws'>get the source code on GitHub.</a></p>
     </body>
     </html>""")

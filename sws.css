@@ -23,3 +23,11 @@ h5,
 h6 {
 	font-family: "Archivo-Bold";
 }
+
+a {
+	color: #aaddff;
+}
+
+.footer {
+	font-size: 10pt;
+}
