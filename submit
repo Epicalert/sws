@@ -2,6 +2,7 @@
 
 import MySQLdb
 import os
+import sys
 import cgi
 
 import surveys
@@ -52,6 +53,7 @@ try:
     c.execute(sql_query, combined)
 except:
     print(open("/usr/share/sws/submit-error.html").read())
+    raise SystemExit
 
 c.execute("COMMIT")
 

@@ -5,7 +5,7 @@ import surveys
 
 if len(sys.argv) < 2:
     print("You must specify a survey!")
-    quit()
+    raise SystemExit
 
 survey = surveys.parse_survey(sys.argv[1])
 cred_sql = surveys.get_credentials_sql()
