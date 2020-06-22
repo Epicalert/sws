@@ -8,8 +8,7 @@ sudo mkdir -p $1/cgi
 
 #copy cgi scripts to install dir
 #TODO: put surveys.py somewhere else
-sudo cp -r sws.css fonts/ $1
-sudo cp survey submit surveys.py $1/cgi
+sudo cp -r sws.css cgi/ fonts/ $1
 
 #TODO: setup script for creating survey tables
 
@@ -20,7 +19,7 @@ sudo mkdir -p /etc/sws/surveys
 sudo mkdir -p /usr/share/sws
 
 #copy files to app data dir
-sudo cp submit-success.html submit-error.html /usr/share/sws
+sudo cp -r html/ /usr/share/sws
 
 #make survey sql database
 sudo mysql -e "CREATE DATABASE sws;"
